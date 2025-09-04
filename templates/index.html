@@ -6,18 +6,54 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>🧮 Calculatrice</h1>
-    <form method="POST">
-        <input type="text" name="expression" placeholder="Ex: 2+2*3" required>
-        <button type="submit">Calculer</button>
-    </form>
+    <div class="calculator">
+        <h1>🧮 Calculatrice</h1>
 
-    {% if result is not none %}
-        <h2>Résultat : {{ result }}</h2>
-    {% endif %}
+        <form method="POST" id="calc-form">
+            <input type="text" name="expression" id="expression" value="{{ expression }}" readonly>
+            <div class="buttons">
+                <button type="button" onclick="press('7')">7</button>
+                <button type="button" onclick="press('8')">8</button>
+                <button type="button" onclick="press('9')">9</button>
+                <button type="button" onclick="press('/')">÷</button>
 
-    <a href="https://https://berryromain.github.io/portfolio/">
-        <button>⬅ Retour au Portfolio</button>
-    </a>
+                <button type="button" onclick="press('4')">4</button>
+                <button type="button" onclick="press('5')">5</button>
+                <button type="button" onclick="press('6')">6</button>
+                <button type="button" onclick="press('*')">×</button>
+
+                <button type="button" onclick="press('1')">1</button>
+                <button type="button" onclick="press('2')">2</button>
+                <button type="button" onclick="press('3')">3</button>
+                <button type="button" onclick="press('-')">−</button>
+
+                <button type="button" onclick="press('0')">0</button>
+                <button type="button" onclick="press('.')">.</button>
+                <button type="submit">=</button>
+                <button type="button" onclick="press('+')">+</button>
+            </div>
+            <div>
+                <button type="button" class="clear" onclick="clearExpr()">C</button>
+            </div>
+        </form>
+
+        {% if result != "" %}
+            <h2>Résultat : {{ result }}</h2>
+        {% endif %}
+
+        <a href="berryromain.github.io/portfolio">
+            <button class="back">⬅ Retour au Portfolio</button>
+        </a>
+    </div>
+
+    <script>
+        function press(val) {
+            document.getElementById("expression").value += val;
+        }
+        function clearExpr() {
+            document.getElementById("expression").value = "";
+        }
+    </script>
 </body>
 </html>
+
